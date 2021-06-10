@@ -28,28 +28,31 @@ in modern oceans. Other fish such as paddlefish,
 garpike and stingray are also present.''']
 
 registrants = {'bob': '123', 'ann': 'pass123', 'mike': 'password123', 'liz': 'password123'}
-#username = input('Insert username:')
-#password = input('Insert password:')
-username = 'bob'
-password = '123'
+username = input('Insert username:')
+password = input('Insert password:')
+
+
 if registrants.get(username) == password:
-    print('Welcome! You can analyze the copy.')
+    print('Welcome,' + username + '. ' + 'There are ' + str(len(TEXTS)) + ' texts to be analyzed.')
 else:
     print('You are not registered. Please, sign up first.')
     exit()
 
-#text_number_input = input('Enter number from 1 to 3 to analyze the texts:')
-text_number_input = 2
+print(70 * '-')
+
+text_number_input = input('Enter number from 1 to 3 to analyze the texts:')
 text_number = [1, 2, 3]
 text_number_input = int(text_number_input)
+
+print(70 * '-')
 
 if text_number_input not in text_number:
     exit()
 
-
 words = TEXTS[text_number_input-1].split()
 wordCount = len(words)
-print(wordCount)
+print('Word count total: ' + str(wordCount))
+
 FirstUpperWordsCount = 0
 UpperWordsCount = 0
 LowerWordsCount = 0
@@ -71,22 +74,30 @@ for word in words:
     if LengthWord in DictFrequency:
        CurrentCount = DictFrequency.get(LengthWord)
        CurrentCount += 1
-       DictFrequency.update({LengthWord:CurrentCount})
+       DictFrequency.update({LengthWord: CurrentCount})
     else:
-        DictFrequency.update({LengthWord:1})
+        DictFrequency.update({LengthWord: 1})
 
+print('Titlecase words: ' + str(FirstUpperWordsCount))
+print('Uppercase words: ' + str(UpperWordsCount))
+print('Lowercase words: ' + str(LowerWordsCount))
+print('Numeric strings: ' + str(NumCount))
+print('Sum of the numbers: ' + str(SumNum))
 
-print('Count of words - first letter upper:' + str(FirstUpperWordsCount))
-print('Count of words - all letters upper:' + str(UpperWordsCount))
-print('Count of words - all letters lower:' + str(LowerWordsCount))
-print('Count of words - numeric:' + str(NumCount))
-print('Sum of numbers:' + str(SumNum))
-print(DictFrequency)
+print(70 * '-')
+# print(DictFrequency)
+print('LEN' + ' | ' + 'OCCURENCES' + ' | ' + 'COUNT')
 
-for item in DictFrequency:
+print(70 * '-')
+listDictFrequency = sorted(DictFrequency.items())
+sortedDictFrequency = dict(listDictFrequency)
+
+for item in sortedDictFrequency:
     i = 1
     stars = ''
     while i <= DictFrequency[item]:
         stars += '*'
         i += 1
-    print(str(item) + '|' + stars + '|' + str(DictFrequency[item]))
+    print(str(item) + '|' + stars + '|' + str(sortedDictFrequency[item]))
+
+
