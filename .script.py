@@ -40,9 +40,15 @@ else:
 
 print(70 * '-')
 
-text_number_input = input('Enter number from 1 to 3 to analyze the texts:')
 text_number = [1, 2, 3]
-text_number_input = int(text_number_input)
+
+text_number_input = input('Enter number from 1 to 3 to analyze the texts:')
+
+if text_number_input.isdigit():
+    text_number_input = int(text_number_input)
+else:
+    print('Invalid number of text. Please, try again.')
+    exit()
 
 print(70 * '-')
 
