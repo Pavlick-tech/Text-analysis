@@ -1,3 +1,5 @@
+import string
+
 TEXTS = ['''
 Situated about 10 miles west of Kemmerer, 
 Fossil Butte is a ruggedly impressive 
@@ -6,7 +8,7 @@ some 1000 feet above Twin Creek Valley
 to an elevation of more than 7500 feet 
 above sea level. The butte is located just 
 north of US 30N and the Union Pacific Railroad, 
-which traverse the valley. ''',
+which traverse the valley.''',
 
 '''At the base of Fossil Butte are the bright 
 red, purple, yellow and gray beds of the Wasatch 
@@ -47,16 +49,19 @@ text_number_input = input('Enter number from 1 to 3 to analyze the texts:')
 if text_number_input.isdigit():
     text_number_input = int(text_number_input)
 else:
-    print('Invalid number of text. Please, try again.')
+    print('Invalid input. Please, enter the number 1,2 or 3.')
     exit()
 
 print(70 * '-')
 
 if text_number_input not in text_number:
+    print('Invalid input. Please, enter the number 1,2 or 3.')
     exit()
 
-words = TEXTS[text_number_input-1].split()
-wordCount = len(words)
+text = TEXTS[text_number_input-1]
+text = text.translate(str.maketrans('', '', string.punctuation))
+
+wordCount = len(text.split())
 print('Word count total: ' + str(wordCount))
 
 FirstUpperWordsCount = 0
@@ -66,7 +71,7 @@ NumCount = 0
 SumNum = 0
 DictFrequency = {}
 
-for word in words:
+for word in text.split():
     if word[0].isupper():
         FirstUpperWordsCount += 1
     if word.isupper():
@@ -105,5 +110,4 @@ for item in sortedDictFrequency:
         stars += '*'
         i += 1
     print(str(item) + '|' + stars + '|' + str(sortedDictFrequency[item]))
-
 
